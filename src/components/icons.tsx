@@ -1,0 +1,35 @@
+import {
+  Bath,
+  Briefcase,
+  Car,
+  DoorOpen,
+  Flag,
+  Hourglass,
+  House,
+  Moon,
+  ShowerHead,
+  Smile,
+  Sun,
+  Cookie,
+  Utensils,
+  Waves,
+  type LucideIcon,
+} from 'lucide-react';
+import type { BlockIcon } from '../types';
+
+export const BLOCK_ICONS: Record<BlockIcon, LucideIcon> = {
+  moon: Moon,
+  sun: Sun,
+  bag: Briefcase,
+  baby: Smile,
+  meal: Utensils,
+  shower: ShowerHead,
+  door: DoorOpen,
+  car: Car,
+  hourglass: Hourglass,
+  flag: Flag,
+  waves: Waves,
+  bath: Bath,
+  snack: Cookie,
+  home: House,
+};
