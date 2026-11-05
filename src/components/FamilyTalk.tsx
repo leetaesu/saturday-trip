@@ -4,6 +4,7 @@ import { cx } from './ui';
 const base = import.meta.env.BASE_URL;
 
 export const CHARACTERS = {
+  dad: { name: '태수아빠', img: `${base}dad.png` },
   mom: { name: '해영엄마', img: `${base}mom.png` },
   rowoon: { name: '로운', img: `${base}rowoon.png` },
   roy: { name: '로이', img: `${base}roy.png` },
@@ -23,12 +24,12 @@ function Avatar({ who }: { who: Speaker }) {
 
 const nameOf = (who: Speaker) => (who === 'twins' ? '로운·로이' : CHARACTERS[who].name);
 
-/** 엄마는 왼쪽, 아이들은 오른쪽에서 말하는 말풍선 대화 */
+/** 엄마·아빠는 왼쪽, 아이들은 오른쪽에서 말하는 말풍선 대화 */
 export function FamilyTalk({ lines, className }: { lines: TalkLine[]; className?: string }) {
   return (
     <div className={cx('no-print my-2 space-y-2 pl-12', className)} aria-label="가족 대화">
       {lines.map((l, i) => {
-        const right = l.who !== 'mom';
+        const right = l.who !== 'mom' && l.who !== 'dad';
         return (
           <div key={i} className={cx('flex items-end gap-2', right && 'flex-row-reverse')}>
             <Avatar who={l.who} />

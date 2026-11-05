@@ -1,5 +1,5 @@
 import { Copy, RotateCcw, Share2 } from 'lucide-react';
-import { Badge, Button, Card, CheckRow, MoneyInput, NeedCheck, SectionHeader, Segmented, Switch } from '../components/ui';
+import { Badge, Button, Card, CheckRow, MoneyInput, SectionHeader, Segmented, Switch } from '../components/ui';
 import { ACTUAL_LABEL, EXTRA_META } from '../data/budget';
 import { PEOPLE, TRIP } from '../data/trip';
 import { won } from '../lib/format';
@@ -33,15 +33,17 @@ export function Budget() {
         <p className="text-[13px] font-bold text-peach-deep">로둥이네 가계부 플래너</p>
         <h1 className="mt-0.5 text-[22px] font-extrabold text-ink-strong">우리 가족 여행 예산 💰</h1>
         <div className="mt-4 rounded-3xl bg-card p-4 text-center shadow-soft">
-          <p className="text-[13px] text-taupe">
-            예상 총비용 · {r.dayLabel} ({r.dayReason})
-          </p>
+          <span className="inline-block rounded-full bg-teal-deep px-3 py-1 text-[12.5px] font-bold text-white">전체 비용</span>
+          <p className="mt-2 text-[14px] font-bold text-ink-strong">가족 4명 예상 총비용</p>
           <p className="mt-1 text-[32px] font-extrabold tracking-tight text-teal-deep">{won(r.total)}</p>
           <p className="text-[14px] text-ink">
             가족 {PEOPLE}명 · 1인당 약 <b>{won(r.perPerson)}</b>
           </p>
+          <p className="mt-2 rounded-2xl bg-mint/60 px-3 py-2 text-[13px] font-bold text-teal-deep">
+            온천 입장료 + 식사 + 간식 + 주유·통행료 + 예비비 포함
+          </p>
           <p className="mt-1 text-[12.5px] text-taupe">
-            찜질방 {budget.sauna ? '포함' : '제외'} · 할인 {r.discount ? won(r.discount) : '미반영'}
+            {r.dayLabel} 요금 ({r.dayReason}) · 찜질방 {budget.sauna ? '포함' : '제외'} · 할인 {r.discount ? won(r.discount) : '미반영'}
           </p>
         </div>
         <p className="mt-3 rounded-2xl bg-butter/50 px-3 py-2 text-[12.5px] leading-relaxed text-butter-deep">
@@ -50,7 +52,7 @@ export function Budget() {
       </Card>
 
       <Card>
-        <SectionHeader emoji="🎟️" title="입장료" subtitle={`성인 ${TRIP.adults}명 + 어린이 ${TRIP.kids}명`} right={<NeedCheck />} />
+        <SectionHeader emoji="🎟️" title="입장료" subtitle={`성인 ${TRIP.adults}명 + 어린이 ${TRIP.kids}명`} />
         <Segmented<DayType>
           label="요금 기준"
           value={budget.dayType}

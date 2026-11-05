@@ -39,10 +39,6 @@ export function Badge({ tone = 'mint', children, className }: { tone?: Tone; chi
   );
 }
 
-export function NeedCheck({ label = '방문 전 확인' }: { label?: string }) {
-  return <Badge tone="warn">⚠️ {label}</Badge>;
-}
-
 export function SectionHeader({
   emoji,
   title,

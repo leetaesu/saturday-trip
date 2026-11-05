@@ -1,7 +1,7 @@
 import { Copy, Printer, RotateCcw, Share2 } from 'lucide-react';
 import { FamilyTalk } from '../components/FamilyTalk';
 import { ScheduleCard } from '../components/ScheduleCard';
-import { Badge, Button, Card, CheckRow, cx, NeedCheck, Segmented } from '../components/ui';
+import { Badge, Button, Card, cx, Segmented } from '../components/ui';
 import { SECTIONS } from '../data/schedule';
 import { TRIP } from '../data/trip';
 import { fmtDate } from '../lib/format';
@@ -12,9 +12,8 @@ import { useProgress } from '../state/useProgress';
 import type { Mode, ScheduleBlock } from '../types';
 
 export function Plan() {
-  const { mode, setMode, blocksOf, confirmChecks, toggleConfirm, tripDate, departure, checks, notify, resetSchedule } = useTrip();
+  const { mode, setMode, blocksOf, tripDate, departure, checks, notify, resetSchedule } = useTrip();
   const p = useProgress();
-  const ruleConfirmed = !!confirmChecks.reentry;
 
   const sectionBlocks: Record<(typeof SECTIONS)[number]['id'], ScheduleBlock[]> = {
     eve: blocksOf('eve'),
@@ -53,7 +52,7 @@ export function Plan() {
 
         <div className="mt-4">
           <p className="mb-2 flex items-center gap-2 text-[14px] font-bold text-ink-strong">
-            온천랜드 점심 계획 {!ruleConfirmed && <NeedCheck label="확인 필요" />}
+            온천랜드 점심 계획
           </p>
           <Segmented<Mode>
             label="점심 일정 모드"
@@ -69,14 +68,6 @@ export function Plan() {
               ? 'A안: 1차 물놀이 → 점심 → 2차 물놀이. 식당 이용 후 어린이온천에 다시 들어갈 수 있을 때.'
               : 'B안: 물놀이를 길게 한 뒤 목욕·환복하고 늦은 점심. 식사 후 재입장이 안 될 때.'}
           </p>
-          {!ruleConfirmed && (
-            <p className="mt-2 rounded-2xl bg-peach-soft px-3 py-2 text-[13px] leading-relaxed text-peach-deep">
-              과거 후기에는 식당 이용 후 물놀이를 이어간 사례가 있지만, 현재 공식 규정은 확인되지 않았어요. 방문 전 전화로 확인해 주세요.
-            </p>
-          )}
-          <CheckRow className="mt-2" checked={ruleConfirmed} onChange={() => toggleConfirm('reentry')}>
-            운영 규정 확인 완료 (식사 후 재이용 여부)
-          </CheckRow>
         </div>
       </Card>
 

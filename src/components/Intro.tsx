@@ -1,25 +1,10 @@
 import { useEffect, useState } from 'react';
 
-const SEEN_KEY = 'onyang-trip:intro-seen';
-
-function alreadySeen() {
-  try {
-    return sessionStorage.getItem(SEEN_KEY) === '1';
-  } catch {
-    return false;
-  }
-}
-
-/** 앱을 처음 열 때 잠깐 보여 주는 가족 그림 인트로 (같은 탭에서 새로고침하면 다시 안 나옴) */
+/** 페이지를 열거나 새로고침할 때마다 잠깐 보여 주는 가족 그림 인트로 */
 export function Intro() {
-  const [phase, setPhase] = useState<'show' | 'leaving' | 'done'>(() => (alreadySeen() ? 'done' : 'show'));
+  const [phase, setPhase] = useState<'show' | 'leaving' | 'done'>('show');
 
   const close = () => {
-    try {
-      sessionStorage.setItem(SEEN_KEY, '1');
-    } catch {
-      // 무시
-    }
     setPhase('leaving');
     window.setTimeout(() => setPhase('done'), 450);
   };

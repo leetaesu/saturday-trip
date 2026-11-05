@@ -47,7 +47,7 @@ export type ScheduleBlock = {
   talk?: TalkLine[];
 };
 
-export type Speaker = 'mom' | 'rowoon' | 'roy' | 'twins';
+export type Speaker = 'dad' | 'mom' | 'rowoon' | 'roy' | 'twins';
 
 export type TalkLine = { who: Speaker; text: string };
 
@@ -64,6 +64,8 @@ export type PackItem = {
   qty: string;
   when: When;
   custom?: boolean;
+  /** 있으면 좋은 선택 준비물 */
+  optional?: boolean;
 };
 
 export type PackCategory = {

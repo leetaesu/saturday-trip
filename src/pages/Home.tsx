@@ -1,7 +1,7 @@
 import { ArrowRight, Backpack, CalendarDays, Car, Clock, Flag, Printer, RotateCcw, Share2, Wallet } from 'lucide-react';
 import { CHARACTERS } from '../components/FamilyTalk';
 import { Badge, Button, Card, cx, inputClass, Progress, SectionHeader } from '../components/ui';
-import { MAP_LINKS, PEOPLE, TRIP } from '../data/trip';
+import { MAP_LINKS, PEOPLE, TRIP, WEATHER_LINK } from '../data/trip';
 import { ddayLabel, fmtDateShort, fmtRange, fmtTime, manwon, parseDate, won } from '../lib/format';
 import { shareOrCopy } from '../lib/share';
 import { buildScheduleText } from '../lib/text';
@@ -99,15 +99,16 @@ export function Home() {
               <span className="steam text-2xl">♨</span>
               <span className="steam steam-2 text-2xl">♨</span>
             </div>
-            <img src={CHARACTERS.mom.img} alt="해영엄마" className="relative h-40 w-auto drop-shadow" />
-            <img src={CHARACTERS.rowoon.img} alt="로운" className="relative h-28 w-auto drop-shadow" />
-            <img src={CHARACTERS.roy.img} alt="로이" className="relative h-32 w-auto drop-shadow" />
+            <img src={CHARACTERS.dad.img} alt="태수아빠" className="relative h-[140px] w-auto -scale-x-100 drop-shadow" />
+            <img src={CHARACTERS.rowoon.img} alt="로운" className="relative h-[100px] w-auto drop-shadow" />
+            <img src={CHARACTERS.roy.img} alt="로이" className="relative h-[112px] w-auto drop-shadow" />
+            <img src={CHARACTERS.mom.img} alt="해영엄마" className="relative h-[136px] w-auto drop-shadow" />
           </div>
           <p className="text-center text-[15px] font-bold text-teal-deep">“{TRIP.slogan}”</p>
 
           <div className="mt-4 rounded-2xl bg-card/90 p-3">
             <label className="block">
-              <span className="mb-1.5 block text-[13px] font-bold text-taupe">여행 날짜 정하기</span>
+              <span className="mb-1.5 block text-[13px] font-bold text-taupe">출발 날짜 (바꿀 수 있어요)</span>
               <input
                 type="date"
                 className={inputClass}
@@ -116,6 +117,14 @@ export function Home() {
               />
             </label>
             <Countdown />
+            <a
+              href={WEATHER_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 flex min-h-11 items-center justify-center gap-1.5 rounded-pill-lg bg-lav text-[14px] font-bold text-lav-deep"
+            >
+              ⛅ 아산 날씨 보기
+            </a>
           </div>
         </div>
       </section>
@@ -232,10 +241,14 @@ export function Home() {
             <Wallet className="size-5" aria-hidden />
           </span>
           <span className="flex-1">
-            <span className="block text-[13px] text-taupe">예상 총비용 · {budgetResult.dayLabel} 기준</span>
-            <span className="block text-[22px] font-extrabold text-ink-strong">{won(budgetResult.total)}</span>
+            <span className="flex flex-wrap items-center gap-1.5">
+              <span className="rounded-full bg-teal-deep px-2 py-0.5 text-[11.5px] font-bold text-white">전체 비용</span>
+              <span className="text-[13px] font-bold text-ink-strong">가족 4명 예상 총비용</span>
+            </span>
+            <span className="mt-0.5 block text-[22px] font-extrabold text-ink-strong">{won(budgetResult.total)}</span>
+            <span className="block text-[12.5px] font-bold text-teal">온천 입장료 + 식사 + 간식 + 주유·통행료 포함</span>
             <span className="block text-[12.5px] text-taupe">
-              약 {manwon(budgetResult.total)} · 1인당 {won(budgetResult.perPerson)}
+              약 {manwon(budgetResult.total)} · 1인당 {won(budgetResult.perPerson)} · {budgetResult.dayLabel} 요금
             </span>
           </span>
           <ArrowRight className="size-5 text-taupe" aria-hidden />

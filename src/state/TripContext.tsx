@@ -1,6 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { DEFAULT_BUDGET } from '../data/budget';
 import { DEFAULT_PACK_ITEMS } from '../data/packing';
+import { TRIP } from '../data/trip';
 import { BLOCKS } from '../data/schedule';
 import { computeBudget, type BudgetResult } from '../lib/budget';
 import { toMin } from '../lib/format';
@@ -107,7 +108,9 @@ export function TripProvider({ children }: { children: ReactNode }) {
   }, []);
 
   // ---- 저장되는 값들
-  const [tripDate, setTripDate] = usePersistentState<string>('tripDate', '');
+  const [storedDate, setTripDate] = usePersistentState<string>('tripDate', TRIP.date);
+  // 날짜를 지워도 기본 출발일(11월 7일 토요일)로 돌아간다.
+  const tripDate = storedDate || TRIP.date;
   const [mode, setMode] = usePersistentState<Mode>('mode', 'A');
   const [departure, setDeparture] = usePersistentState<string>('departure', '');
   const [checks, setChecks] = usePersistentState<Checks>('scheduleChecks', {});
@@ -194,7 +197,7 @@ export function TripProvider({ children }: { children: ReactNode }) {
   const resetBudget = useCallback(() => setBudgetState(DEFAULT_BUDGET), [setBudgetState]);
   const resetAll = useCallback(() => {
     clearAllStore();
-    setTripDate('');
+    setTripDate(TRIP.date);
     setMode('A');
     setDeparture('');
     setChecks({});

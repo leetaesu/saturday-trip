@@ -5,7 +5,7 @@ import { fmtRange, fmtTime } from '../lib/format';
 import { useTrip } from '../state/TripContext';
 import type { ScheduleBlock } from '../types';
 import { BLOCK_ICONS } from './icons';
-import { Badge, Button, CheckRow, cx, Field, inputClass, NeedCheck } from './ui';
+import { Badge, Button, CheckRow, cx, Field, inputClass } from './ui';
 
 const TONE_STYLE = {
   normal: 'bg-card',
@@ -70,7 +70,6 @@ export function ScheduleCard({ block, state }: { block: ScheduleBlock; state?: '
             <div className="flex flex-wrap items-center gap-1.5">
               <span className="text-[14px] font-extrabold text-teal-deep">{fmtRange(block.start, block.end)}</span>
               {state === 'now' && <Badge tone="peach">진행 중</Badge>}
-              {block.needsCheck && <NeedCheck label="운영 규정 확인 필요" />}
               {edited && <Badge tone="lav">수정됨</Badge>}
             </div>
             <h3 className={cx('mt-0.5 text-[17px] font-extrabold leading-snug', done ? 'text-taupe line-through' : 'text-ink-strong')}>

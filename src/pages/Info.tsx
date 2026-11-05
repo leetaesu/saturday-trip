@@ -1,6 +1,6 @@
 import { Clock, Copy, ExternalLink, MapPin, Phone } from 'lucide-react';
 import { CHARACTERS } from '../components/FamilyTalk';
-import { Badge, Button, Card, CheckRow, LinkButton, NeedCheck, SectionHeader } from '../components/ui';
+import { Badge, Button, Card, CheckRow, LinkButton, SectionHeader } from '../components/ui';
 import { CALL_QUESTION, CONFIRM_ITEMS, FACILITIES, SAFETY_TIPS, SOURCES } from '../data/info';
 import { MAP_LINKS, TRIP } from '../data/trip';
 import { copyText } from '../lib/share';
@@ -87,7 +87,6 @@ export function Info() {
               checked={!!confirmChecks[c.id]}
               onChange={() => toggleConfirm(c.id)}
               sub={c.desc}
-              right={!confirmChecks[c.id] ? <NeedCheck label="확인 필요" /> : undefined}
             >
               {i + 1}. {c.title}
             </CheckRow>
@@ -142,9 +141,6 @@ export function Info() {
           </li>
           <li>
             <Badge tone="lav">과거 후기</Badge> 블로그 이용 사례는 현재 규정이 아니에요.
-          </li>
-          <li>
-            <Badge tone="warn">확인 필요</Badge> 운영 규정은 방문 전 다시 확인해요.
           </li>
         </ul>
         <div className="space-y-2">

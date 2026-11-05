@@ -50,6 +50,13 @@ export function Packing() {
           </div>
           <span className="text-[26px] font-extrabold text-teal-deep">{pct(done, total)}%</span>
         </div>
+        <div className="mt-3 rounded-2xl bg-butter/50 px-4 py-3 text-[13px] leading-relaxed text-butter-deep">
+          <b>💡 이렇게 쓰세요</b>
+          <br />
+          우리 집엔 필요 없다 싶은 건 고민 말고 <b>그냥 체크해서 완료</b>로 넘기세요.
+          <br />
+          <b>선택</b> 표시가 붙은 건 있으면 편한 것들이에요. 목록에서 아예 빼고 싶으면 아래 ‘항목 삭제하기’를 누르세요.
+        </div>
         <Progress className="mt-3" value={pct(done, total)} />
         <p className="mt-2 text-[13px] text-taupe">
           {done}/{total}개 챙김 · {total - done ? `남은 준비물 ${total - done}개` : '모두 챙겼어요 🎉'}
@@ -133,6 +140,7 @@ export function Packing() {
                       {i.qty && <b className="font-bold text-teal">{i.qty}</b>}
                       {i.qty && ' · '}
                       {WHEN_LABEL[i.when]}
+                      {i.optional && <b className="ml-1 rounded-full bg-lav px-1.5 py-px text-[11px] text-lav-deep">선택</b>}
                       {i.custom && ' · 직접 추가'}
                     </>
                   }

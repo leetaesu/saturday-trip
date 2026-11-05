@@ -1,5 +1,7 @@
 export const TRIP = {
   name: '우리 가족 온양온천랜드 여행 ♨️',
+  /** 여행 날짜 (출발일) */
+  date: '2026-11-07',
   subtitle: '5살 남자아이 둘과 함께하는 따뜻한 겨울 온천 여행',
   slogan: '추운 겨울, 따뜻한 온천에서 신나게 놀자!',
   from: '범계역',
@@ -23,6 +25,8 @@ export const PEOPLE = TRIP.adults + TRIP.kids;
  * 지도 앱의 공식 검색 링크만 쓴다. (좌표·경로 파라미터를 임의로 만들지 않음)
  * 검색 결과에서 장소를 고른 뒤 '길찾기'를 누르면 현재 위치 또는 출발지를 지정할 수 있다.
  */
+export const WEATHER_LINK = `https://search.naver.com/search.naver?query=${encodeURIComponent('아산 날씨')}`;
+
 export const MAP_LINKS = {
   naverTo: `https://map.naver.com/p/search/${encodeURIComponent(TRIP.to)}`,
   kakaoTo: `https://map.kakao.com/link/search/${encodeURIComponent(TRIP.to)}`,

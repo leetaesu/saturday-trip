@@ -38,6 +38,8 @@ export const BLOCKS: Record<ScheduleGroupId, ScheduleBlock[]> = {
         '젖은 옷 담을 비닐봉지 준비',
         '휴대폰과 보조배터리 충전',
         '다음 날 아침 식사 재료 준비',
+        '역할 나누기: 아빠 운전·짐 / 엄마 아이들 챙기기',
+        '목욕 때 둥이를 누가 데리고 갈지 정하기 (남탕 출입 규정 확인)',
         '물놀이 가방 90% 이상 포장',
         '아이들 일찍 재우기',
       ]),
@@ -55,6 +57,7 @@ export const BLOCKS: Record<ScheduleGroupId, ScheduleBlock[]> = {
     },
     {
       id: 'm0630',
+      talk: [{ who: 'dad', text: '짐은 아빠가 차에 다 실을게! 💪' }],
       start: '06:30',
       end: '06:50',
       title: '짐 최종 확인과 차량 준비',
@@ -119,6 +122,7 @@ export const BLOCKS: Record<ScheduleGroupId, ScheduleBlock[]> = {
         '물티슈 챙기기',
         '신발 신기',
         '외투 입기',
+        '아이들 오늘 입은 옷 사진 찍기 📸 (미아 대비)',
         '집 문단속 확인',
         '차량 카시트 착석',
       ]),
@@ -159,7 +163,7 @@ export const BLOCKS: Record<ScheduleGroupId, ScheduleBlock[]> = {
   drive: [
     {
       id: 'drive',
-      talk: [{ who: 'roy', text: '엄마, 아직 멀었어?' }, { who: 'mom', text: '간식 먹고 노래 몇 곡 부르면 도착이야 🎵' }],
+      talk: [{ who: 'dad', text: '운전은 아빠한테 맡겨! 🚗' }, { who: 'roy', text: '아빠, 아직 멀었어?' }, { who: 'mom', text: '간식 먹고 노래 몇 곡 부르면 도착이야 🎵' }],
       start: '08:20',
       end: '10:30',
       title: '범계역 → 온양온천랜드 이동',
@@ -169,9 +173,19 @@ export const BLOCKS: Record<ScheduleGroupId, ScheduleBlock[]> = {
       notes: ['아이들은 카시트 착용', '물과 간식 준비', '여벌 비닐봉지 준비', '출발 전 화장실', '안전운전'],
       showNav: true,
     },
+    {
+      id: 'rest',
+      talk: [{ who: 'rowoon', text: '아빠, 쉬 마려워!' }, { who: 'dad', text: '조금만! 곧 휴게소야 🛑' }],
+      start: '09:20',
+      end: '09:35',
+      title: '중간 휴게소 쉬기 (10~15분)',
+      icon: 'snack',
+      desc: '출발하고 1시간쯤 지나면 한 번 쉬어요. 출발이 늦었으면 짧게 쉬어도 돼요. 시간은 교통 상황에 맞춰 조절해요.',
+      tasks: t('rest', ['아이들 화장실', '물 마시고 기지개 켜기', '다시 카시트 착석']),
+    },
   ],
   landA: [
-    { id: 'a1', start: '10:30', end: '11:00', title: '도착 및 환복', icon: 'flag', desc: '주차, 입장, 옷 갈아입기' },
+    { id: 'a1', start: '10:30', end: '11:00', title: '도착 및 환복', icon: 'flag', desc: '주차, 입장, 옷 갈아입기', tasks: t('a1', ['미아 방지 팔찌 채우기', '떨어지면 만날 장소 아이들과 약속하기']) },
     { id: 'a2', talk: [{ who: 'rowoon', text: '물이 따뜻하다~!' }, { who: 'roy', text: '로운아 같이 놀자! 🌊' }], start: '11:00', end: '12:20', title: '1차 물놀이', icon: 'waves', desc: '어린이온천에서 신나게 놀기' },
     {
       id: 'a3',
@@ -188,7 +202,7 @@ export const BLOCKS: Record<ScheduleGroupId, ScheduleBlock[]> = {
     { id: 'a6', start: '15:30', end: '16:00', title: '간식 및 정산', icon: 'snack', desc: '매점 이용, 짐 정리' },
   ],
   landB: [
-    { id: 'b1', start: '10:30', end: '11:00', title: '도착 및 환복', icon: 'flag', desc: '주차, 입장, 옷 갈아입기' },
+    { id: 'b1', start: '10:30', end: '11:00', title: '도착 및 환복', icon: 'flag', desc: '주차, 입장, 옷 갈아입기', tasks: t('b1', ['미아 방지 팔찌 채우기', '떨어지면 만날 장소 아이들과 약속하기']) },
     {
       id: 'b2',
       talk: [{ who: 'rowoon', text: '물이 따뜻하다~!' }, { who: 'roy', text: '로운아 같이 놀자! 🌊' }, { who: 'mom', text: '중간에 물 마시고 쉬었다 놀자~' }],
@@ -196,7 +210,8 @@ export const BLOCKS: Record<ScheduleGroupId, ScheduleBlock[]> = {
       end: '14:00',
       title: '물놀이 (중간 휴식 포함)',
       icon: 'waves',
-      desc: '중간중간 물 마시고 몸을 녹이며 쉬어요. 아침을 든든히 먹고 오면 좋아요.',
+      desc: '중간중간 물 마시고 몸을 녹이며 쉬어요. 점심이 늦으니 12:30쯤 간식 타임을 꼭 가져요.',
+      tasks: t('b2', ['12:30쯤 간식 타임 (매점 또는 챙겨 온 간식)', '물 자주 마시기']),
       needsCheck: true,
     },
     { id: 'b3', talk: [{ who: 'mom', text: '머리 바짝 말려야 감기 안 걸려' }, { who: 'roy', text: '윙~ 드라이기!' }], start: '14:00', end: '14:40', title: '목욕·환복', icon: 'bath', desc: '샤워, 머리 말리기, 따뜻한 옷 입기' },
@@ -206,11 +221,21 @@ export const BLOCKS: Record<ScheduleGroupId, ScheduleBlock[]> = {
   return: [
     {
       id: 'r1',
-      talk: [{ who: 'rowoon', text: '또 오고 싶어!' }, { who: 'roy', text: 'Zzz… 😴' }],
+      talk: [{ who: 'dad', text: '다들 벨트 맸지? 집으로 출발~' }, { who: 'rowoon', text: '또 오고 싶어!' }, { who: 'roy', text: 'Zzz… 😴' }],
       start: '16:00',
       title: '범계역 방향 출발',
       icon: 'home',
-      desc: '자가용으로 귀가. 아이들이 차에서 잠들 수 있으니 따뜻하게 입혀요.',
+      desc: '자가용으로 귀가. 아이들이 차에서 잠들 수 있으니 담요 덮고 따뜻하게 입혀요.',
+    },
+    {
+      id: 'r2',
+      talk: [{ who: 'mom', text: '오늘 다들 수고했어! 💛' }, { who: 'twins', text: '온천 최고! 또 가자!' }],
+      start: '18:00',
+      end: '20:00',
+      title: '집 도착 & 저녁',
+      icon: 'home',
+      desc: '도착 시간은 교통 상황에 따라 달라요. 저녁은 배달이나 간단하게!',
+      tasks: t('r2', ['저녁 먹기 (배달·간단식)', '젖은 수영복·수건 빨래 꺼내기', '아이들 일찍 재우기']),
     },
   ],
 };
