@@ -1,9 +1,10 @@
-import { Backpack, CalendarClock, House, PiggyBank, Waves, type LucideIcon } from 'lucide-react';
+import { Backpack, CalendarClock, House, Images, PiggyBank, Waves, type LucideIcon } from 'lucide-react';
 import { CHARACTERS } from './components/FamilyTalk';
 import { Intro } from './components/Intro';
 import { PrintSheet } from './components/PrintSheet';
 import { cx } from './components/ui';
 import { Budget } from './pages/Budget';
+import { Gallery } from './pages/Gallery';
 import { Home } from './pages/Home';
 import { Info } from './pages/Info';
 import { Packing } from './pages/Packing';
@@ -13,10 +14,11 @@ import type { TabId } from './types';
 
 const NAV: { id: TabId; label: string; title: string; icon: LucideIcon }[] = [
   { id: 'home', label: '홈', title: '홈', icon: House },
-  { id: 'plan', label: '전체 일정', title: '전체 일정', icon: CalendarClock },
+  { id: 'plan', label: '일정', title: '전체 일정', icon: CalendarClock },
   { id: 'packing', label: '준비물', title: '준비물', icon: Backpack },
   { id: 'budget', label: '비용', title: '비용', icon: PiggyBank },
-  { id: 'info', label: '여행 정보', title: '여행 정보', icon: Waves },
+  { id: 'gallery', label: '사진', title: '온양온천랜드 사진보기', icon: Images },
+  { id: 'info', label: '정보', title: '여행 정보', icon: Waves },
 ];
 
 function Shell() {
@@ -44,6 +46,7 @@ function Shell() {
           {tab === 'plan' && <Plan />}
           {tab === 'packing' && <Packing />}
           {tab === 'budget' && <Budget />}
+          {tab === 'gallery' && <Gallery />}
           {tab === 'info' && <Info />}
         </main>
 
@@ -58,7 +61,7 @@ function Shell() {
                   onClick={() => go(n.id)}
                   aria-current={active ? 'page' : undefined}
                   className={cx(
-                    'flex min-h-14 flex-1 flex-col items-center justify-center gap-0.5 rounded-3xl px-1 text-[11.5px] font-bold transition',
+                    'flex min-h-14 min-w-0 flex-1 flex-col items-center justify-center gap-0.5 rounded-3xl px-0.5 text-[11.5px] font-bold transition',
                     active ? 'bg-mint-strong text-teal-deep shadow-[0_4px_14px_rgb(45_100_92/0.18)]' : 'text-taupe',
                   )}
                 >

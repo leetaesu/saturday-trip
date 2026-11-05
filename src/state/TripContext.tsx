@@ -65,7 +65,7 @@ type TripContextValue = {
 
 const TripContext = createContext<TripContextValue | null>(null);
 
-const TABS: TabId[] = ['home', 'plan', 'packing', 'budget', 'info'];
+const TABS: TabId[] = ['home', 'plan', 'packing', 'budget', 'gallery', 'info'];
 
 function readHash(): { tab: TabId; anchor?: string } {
   const [tab, anchor] = window.location.hash.replace(/^#\/?/, '').split('/');

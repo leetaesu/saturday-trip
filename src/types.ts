@@ -1,4 +1,4 @@
-export type TabId = 'home' | 'plan' | 'packing' | 'budget' | 'info';
+export type TabId = 'home' | 'plan' | 'packing' | 'budget' | 'gallery' | 'info';
 
 /** A안: 점심 후 어린이온천 재이용 가능 / B안: 재이용 불가 */
 export type Mode = 'A' | 'B';
